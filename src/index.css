@@ -1,0 +1,280 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: CambriaNew;
+  src: url('/public/Cambria.ttf');
+}
+
+:root {
+  color-scheme: light dark;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --primary: rebeccapurple;
+  --content-font-size: 16px;
+  --content-font-style: "Arial";
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --text: #080c0c;
+    --background: #f8fcfc;
+    --secondary: #89ecec;
+    --accent: #46f6f6;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #f3f7f7;
+    --background: #030707;
+    --secondary: #137676;
+    --accent: #09b9b9;
+  }
+}
+
+body {
+  width: 100%;
+  height: 100dvh;
+}
+
+
+#root {
+  display: grid;
+  grid-template-columns: 1fr 2.25fr;
+  width: 100%;
+  height: 100%;
+  color: var(--text);
+}
+
+.visible {
+  display: grid;
+}
+
+.invisible {
+  display: none;
+}
+
+#inputSection {
+  height: 100dvh;
+  background-color: var(--background);
+  color: var(--text);
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  place-items: center;
+  background-color: var(--primary);
+  #navigation {
+    border-bottom: 2px solid var(--background);
+    display: flex;
+    justify-content: space-between;
+  }
+  button {
+    padding: 0.5rem;
+    width: fit-content;
+    height: fit-content;
+    margin: 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    transition-duration: 0.5s;
+    background-color: var(--background);
+  }
+  button:hover {
+    box-shadow: 0 0 10px 1px var(--background);
+  }
+
+  #optionContainer {
+    height: calc(100% - 20px);
+    width: calc(100% - 20px);
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+  }
+  button {
+    place-self: center;
+  }
+  .section {
+    background-color: var(--background);
+    width: 85%;
+    padding: 5%;
+    min-height: fit-content;
+    border-radius: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    object-fit: contain;
+    display: grid;
+    position: relative;
+    overflow-x: hidden;
+    span {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+    .left {
+      align-self: center;
+      justify-self: left;
+    }
+    input {
+      background-color: rgb(0, 0, 0, 0);
+      border: none;
+      border-bottom: 2px solid var(--text);
+      transition-duration: 0.5s;
+    }
+    input:focus {
+      outline: none;
+      border-bottom: 2px solid var(--accent);
+    }
+    h1 {
+      input {
+        font-size: 0.75em;
+        width: 100%;
+      }
+    }
+    label {
+      display: grid;
+      grid-template-columns: 8ch 1fr;
+      gap: 0.5rem;
+      padding-top: 0.5rem;
+      span {
+        text-align: right;
+      }
+    }
+    button {
+      place-self: center;
+      border: 1px solid var(--text);
+    }
+    button:hover {
+      box-shadow: 0 0 5px 1px var(--text);
+    }
+    li {
+      list-style: none;
+      button.removeBulletButton {
+        padding: 0;
+        margin: 0;
+        border: none;
+        &:hover {
+          box-shadow: none;
+        }
+        img[src$='.svg'] {
+          width: 12px;
+          padding: 0;
+          border: none;
+        }
+      }
+      button {
+        margin-left: 0;
+      }
+    }
+    .removeSectionButton {
+      position: absolute;
+      cursor: pointer;
+      width: 5%;
+      right: 0;
+      top: 0;
+      padding: 0;
+      border: none;
+      background-color: rgba(0, 0, 0, 0);
+      &:hover {
+        box-shadow: none;
+      }
+      img[src$='.svg'] {
+        width: 100%;
+        padding: 0;
+        border: none;
+      }
+    }
+  }
+  .educationEntry {
+    width: 90%;
+    place-self: center;
+    box-shadow: -2.5px 2.5px 0 var(--text);
+    margin-bottom: 1rem;
+  }
+}
+
+#incompatibilityAlert {
+  display: none;
+}
+
+#resumeWrapper {
+  display: grid;
+  place-items: center;
+  overflow: scroll;
+  #Resume {
+    background-color: white;
+    color: black;
+    margin: 2.5rem;
+    box-shadow: 0 0 10px 0 rgb(184, 184, 184);
+    width: 700px;
+    aspect-ratio: 1 / 1.4145;
+    display: grid;
+    place-items: center;
+  }
+}
+
+#content {
+  font-size: var(--content-font-size);
+  font-family: var(--content-font-style);
+  overflow: hidden;
+  width: calc(100% - 70px);
+  height: calc(100% - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  .personalSection {
+    text-align: center;
+  }
+  .educationEntry {
+    display: grid;
+    width: 100%;
+    grid-template-columns: auto auto;
+    span:nth-child(2) {
+      text-align: right;
+    }
+  }
+  .sectionSection {
+    li {
+      list-style-type: disc;
+      margin-left: 1rem;
+    }
+  }
+  h1 {
+    font-size: 2em;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #incompatibilityAlert {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: grid;
+    position: fixed;
+    width: 95%;
+    height: 100%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    background-color: var(--background);
+    color: var(--text);
+    top: 0;
+    left: 0;
+    font-size: xx-large;
+    place-items: center;
+    font-weight: 900;
+    text-align: center;
+  }
+}
+
+@media print {
+  /* Hide everything */
+  #root {
+    visibility: hidden;
+  }
+  /* just works, I don't know why, but it does! at least on linux lol */
+  #content {
+    visibility: visible;
+    position: absolute;
+    left: 35px;
+  }
+}
